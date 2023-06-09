@@ -18,3 +18,7 @@ npm run serve
 ```bash
 npm run build
 ```
+
+# 项目截图
+
+![效果](./public/test.jpeg)

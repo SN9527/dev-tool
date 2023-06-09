@@ -3,9 +3,8 @@
         title="markdown 预览"
         :visible.sync="showDialog"
         :modal="false"
-        :append-to-body="true"
-        width="100%"
-        fullscreen>
+        width="80%"
+        >
         <v-md-editor 
             v-model="fileContent" 
             left-toolbar=""
@@ -13,7 +12,7 @@
             :default-show-toc="true"
             :toc-nav-position-right="true"
             mode="editable"
-            height="calc(100vh - 90px)"
+            height="700px"
             @save="save"
         />
     </el-dialog>   	
@@ -38,6 +37,7 @@ export default {
         save: function() {
     		console.log("save:")
     
+            this.showDialog = false
         	this.$emit("save" , this.fileContent)
         },      
     },

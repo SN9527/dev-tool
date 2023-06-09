@@ -2,14 +2,16 @@
     <div v-title data-title="思维导图">
         <div class="flex" style="border-bottom: 1px solid #ddd;padding: 0 0 20px;">
             <div style="width: 200px;margin-right: 10px;"><el-input type="text" size="mini" placeholder="json文件" v-model="mindFile"/></div>
-            <el-button icon="el-icon-upload2" size="mini" @click="jsMindImport">导入</el-button>
-            <el-button icon="el-icon-download" size="mini" @click="jsMindExport">导出</el-button>
+            <el-button icon="el-icon-download" size="mini" @click="jsMindImport">导入</el-button>
+            <el-button icon="el-icon-upload2" size="mini" @click="jsMindExport">导出</el-button>
 
             <el-button icon="el-icon-zoom-in" size="mini" @click="jsMindZoomIn">放大</el-button>
             <el-button icon="el-icon-zoom-out" size="mini" @click="jsMindZoomOut">缩小</el-button>
         </div>
 
         <div id="jsmindContainer"></div>
+
+        <MarkdownDialog ref="markdownDialog" @save="markdownSave"/>        
     </div>
 </template>
 
@@ -24,7 +26,7 @@ import { saveAs } from "file-saver";
 export default {
     name: "JsMind",
     components: {
-
+        MarkdownDialog  :()=> import("../Common/MarkdownDialog"), 
     },
     data() {
         return {
@@ -39,16 +41,9 @@ export default {
                 data: {
                     id: "root",
                     topic: "jsMind",
-                    children: [
-                        {
-                            id: "easy",
-                            topic: "easy",
-                            direction: "right",
-                            expanded: false,
-                            children: [],
-                        }
-                    ]
-                }
+                    children: []
+                },
+                mdDist: {},
             },
             options: {
                 container: "jsmindContainer",
@@ -63,6 +58,7 @@ export default {
                         {target:"addChild",text: "添加子节点",callback: function (node) {console.log(node)}},
                         {target:"addBrother",text: "添加兄弟节点",callback: function (node) {console.log(node)}},
                         {target:"delete",text: "删除节点",callback: function (node) {console.log(node)}},
+                        {target:"screenshot",text: "Markdown",callback: this.markdownPreview},
                     ],                
                 },                
                 view: {
@@ -76,7 +72,7 @@ export default {
                 layout: {
                     hspace: 100, 
                     vspace: 20, 
-                    pspace: 20 
+                    pspace: 2000 
                 },
                 shortcut: {
                     enable: false 
@@ -102,7 +98,10 @@ export default {
         jsMindExport: function() {
             console.log("jsMindExport:")
 
-            let blob = new Blob([JSON.stringify(this.jsMind.get_data() , null , 4)], {type: "text/plain;charset=utf-8"})            
+            let mindData = this.jsMind.get_data()
+            mindData.mdDist = this.mind.mdDist
+
+            let blob = new Blob([JSON.stringify(mindData , null , 4)], {type: "text/plain;charset=utf-8"})            
             saveAs(blob, this.mindFile)
         },  
         jsMindImport: function(fileMust = true) {
@@ -125,7 +124,27 @@ export default {
                 this.jsMind.show(this.mind)                    
             })            
 
-        },                        
+        }, 
+
+        markdownPreview: function(node) {
+            if(node) {
+                console.log("markdownPreview:" , node)
+
+                if(!this.mind.mdDist) this.mind.mdDist = {}
+
+                this.nodeId = node.id
+
+                this.$refs.markdownDialog.show(this.mind.mdDist[this.nodeId])
+            }
+        },
+        markdownSave: function(content) {
+            console.log("markdownSave:" , content)
+
+            this.mind.mdDist[this.nodeId] = content
+            this.$forceUpdate()
+
+            this.$message.success("保存成功")           
+        },                                
     }
 }
 </script>

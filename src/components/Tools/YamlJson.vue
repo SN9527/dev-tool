@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-title data-title="yaml-json互转">
         <div style="display: flex;">
             <div style="width: 50%;">
                 <codemirror

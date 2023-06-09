@@ -11,16 +11,13 @@
         "children": [
             {
                 "id": "easy",
-                "topic": "sds",
+                "topic": "easy",
                 "expanded": false,
-                "direction": "right"
-            },
-            {
-                "id": "89e0051e72e6ed47",
-                "topic": "New Node",
-                "expanded": true,
                 "direction": "right"
             }
         ]
+    },
+    "mdDist": {
+        "root": "# ddd\n"
     }
 }
