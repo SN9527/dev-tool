@@ -5,8 +5,8 @@
             <el-button icon="el-icon-upload2" size="mini" @click="jsMindImport">导入</el-button>
             <el-button icon="el-icon-download" size="mini" @click="jsMindExport">导出</el-button>
 
-            <el-button icon="el-icon-zoom-out" size="mini" @click="jsMindZoomIn">放大</el-button>
-            <el-button icon="el-icon-zoom-in" size="mini" @click="jsMindZoomOut">缩小</el-button>
+            <el-button icon="el-icon-zoom-in" size="mini" @click="jsMindZoomIn">放大</el-button>
+            <el-button icon="el-icon-zoom-out" size="mini" @click="jsMindZoomOut">缩小</el-button>
         </div>
 
         <div id="jsmindContainer"></div>
@@ -87,16 +87,17 @@ export default {
     },
     mounted() {
         document.oncontextmenu = function() {return false}
+        this.jsMind = new jsMind(this.options)        
         this.jsMindImport(false)
     },
     methods: {
         jsMindZoomIn: function() {
             console.log("jsMindZoomIn:")
-            this.jsMind.view.jsMindZoomIn()
+            this.jsMind.view.zoomIn()
         },
         jsMindZoomOut: function() {
             console.log("jsMindZoomOut:")
-            this.jsMind.view.jsMindZoomOut()
+            this.jsMind.view.zoomOut()
         },   
         jsMindExport: function() {
             console.log("jsMindExport:")
@@ -114,7 +115,6 @@ export default {
 
                 if(res.data) this.mind = res.data
 
-                this.jsMind = new jsMind(this.options)
                 this.jsMind.show(this.mind)                    
             })
             .catch(err => {
@@ -122,7 +122,6 @@ export default {
 
                 if(fileMust) return this.$message.error("加载文件失败")
 
-                this.jsMind = new jsMind(this.options)
                 this.jsMind.show(this.mind)                    
             })            
 
