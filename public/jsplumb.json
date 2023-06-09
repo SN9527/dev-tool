@@ -1,0 +1,1162 @@
+{
+    "endPointId": 57,
+    "endPoint": [
+        {
+            "type": "rectangle",
+            "width": "120",
+            "height": "40",
+            "label": "kubectl",
+            "parentId": 0,
+            "id": 1,
+            "x": 370,
+            "y": 310,
+            "styleList": [],
+            "index": "rectangle_1",
+            "zIndex": 1
+        },
+        {
+            "type": "rectangle",
+            "width": "100",
+            "height": "40",
+            "label": "Autherization",
+            "parentId": 32,
+            "id": 2,
+            "x": 380,
+            "y": 410,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_2",
+            "zIndex": "-7",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "100",
+            "height": "30",
+            "label": "(pods,service,rep,controllers)",
+            "parentId": 32,
+            "id": 3,
+            "x": 350,
+            "y": 510,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_3",
+            "zIndex": "-6",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "120",
+            "height": "60",
+            "label": "Scheduler",
+            "parentId": 32,
+            "id": 4,
+            "x": 150,
+            "y": 630,
+            "styleList": [],
+            "index": "rectangle_4",
+            "zIndex": "-7",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "120",
+            "height": "50",
+            "label": "Scheduler atuactor",
+            "parentId": 32,
+            "id": 5,
+            "x": 150,
+            "y": 490,
+            "styleList": [],
+            "index": "rectangle_5",
+            "zIndex": "-7",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "140",
+            "height": "60",
+            "label": "Controller Manager",
+            "parentId": 32,
+            "id": 6,
+            "x": 350,
+            "y": 630,
+            "styleList": [],
+            "index": "rectangle_6",
+            "zIndex": "-7",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "140",
+            "height": "60",
+            "label": "Distributed Storage",
+            "parentId": 32,
+            "id": 7,
+            "x": 450,
+            "y": 740,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_7",
+            "zIndex": "-8",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "elliptical",
+            "width": "110",
+            "height": "40",
+            "label": "Internet",
+            "parentId": 0,
+            "id": 8,
+            "x": 940,
+            "y": 80,
+            "styleList": [],
+            "index": "elliptical_8",
+            "zIndex": 1
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "40",
+            "label": "Firewall",
+            "parentId": 0,
+            "id": 9,
+            "x": 940,
+            "y": 170,
+            "styleList": [],
+            "index": "rectangle_9",
+            "zIndex": 1
+        },
+        {
+            "type": "rectangle",
+            "width": "560",
+            "height": "340",
+            "label": "",
+            "parentId": 0,
+            "id": 10,
+            "x": 720,
+            "y": 260,
+            "styleList": [],
+            "index": "rectangle_10",
+            "zIndex": "-9"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "40",
+            "label": "kubelet",
+            "parentId": 10,
+            "id": 11,
+            "x": 770,
+            "y": 280,
+            "styleList": [],
+            "index": "rectangle_11",
+            "zIndex": 1,
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "40",
+            "label": "Proxy",
+            "parentId": 10,
+            "id": 12,
+            "x": 940,
+            "y": 280,
+            "styleList": [],
+            "index": "rectangle_12",
+            "zIndex": 1,
+            "group": "rectangle_10"
+        },
+        {},
+        {
+            "type": "rectangle",
+            "width": "40",
+            "height": "30",
+            "label": "Pod",
+            "parentId": 10,
+            "id": 14,
+            "x": 770,
+            "y": 450,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_14",
+            "zIndex": "2",
+            "group": "rectangle_10"
+        },
+        {},
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "cAdisor",
+            "parentId": 10,
+            "id": 16,
+            "x": 790,
+            "y": 480,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_16",
+            "zIndex": "2",
+            "group": "rectangle_10"
+        },
+        {},
+        {},
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "90",
+            "label": "",
+            "styleList": [],
+            "parentId": 10,
+            "id": 19,
+            "x": 770,
+            "y": 450,
+            "index": "rectangle_19",
+            "zIndex": 1,
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "90",
+            "label": "",
+            "styleList": [],
+            "parentId": 10,
+            "id": 20,
+            "x": 940,
+            "y": 450,
+            "index": "rectangle_20",
+            "zIndex": 1,
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "40",
+            "height": "30",
+            "label": "Pod",
+            "parentId": 10,
+            "id": 21,
+            "x": 940,
+            "y": 450,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_21",
+            "zIndex": "2",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "container",
+            "parentId": 10,
+            "id": 22,
+            "x": 960,
+            "y": 480,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_22",
+            "zIndex": "2",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "90",
+            "label": "",
+            "styleList": [],
+            "parentId": 10,
+            "id": 23,
+            "x": 1120,
+            "y": 450,
+            "index": "rectangle_23",
+            "zIndex": 1,
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "40",
+            "height": "30",
+            "label": "Pod",
+            "parentId": 10,
+            "id": 24,
+            "x": 1120,
+            "y": 450,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_24",
+            "zIndex": "2",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "container",
+            "parentId": 10,
+            "id": 25,
+            "x": 1140,
+            "y": 480,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_25",
+            "zIndex": "2",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "",
+            "parentId": 10,
+            "id": 26,
+            "x": 1150,
+            "y": 490,
+            "styleList": [],
+            "index": "rectangle_26",
+            "zIndex": "1",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "",
+            "parentId": 10,
+            "id": 27,
+            "x": 970,
+            "y": 490,
+            "styleList": [],
+            "index": "rectangle_27",
+            "zIndex": "1",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "",
+            "parentId": 10,
+            "id": 28,
+            "x": 800,
+            "y": 490,
+            "styleList": [],
+            "index": "rectangle_28",
+            "zIndex": "1",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": 40,
+            "height": 40,
+            "label": "REST",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "x": 400,
+            "y": 490,
+            "parentId": 32,
+            "id": 29,
+            "index": "rectangle_29",
+            "zIndex": "-6",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "170",
+            "height": "50",
+            "label": "",
+            "styleList": [],
+            "x": 340,
+            "y": 490,
+            "parentId": 32,
+            "id": 30,
+            "index": "rectangle_30",
+            "zIndex": "-7",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "440",
+            "height": "160",
+            "label": "",
+            "parentId": 32,
+            "id": 31,
+            "x": 110,
+            "y": 430,
+            "styleList": [],
+            "index": "rectangle_31",
+            "zIndex": "-8",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "580",
+            "height": "390",
+            "label": "",
+            "parentId": 0,
+            "id": 32,
+            "x": 40,
+            "y": 380,
+            "styleList": [],
+            "index": "rectangle_32",
+            "zIndex": "-9"
+        },
+        {
+            "type": "rectangle",
+            "width": "80",
+            "height": "40",
+            "label": "API Server",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "x": 120,
+            "y": 430,
+            "parentId": 32,
+            "id": 33,
+            "index": "rectangle_33",
+            "zIndex": "-7",
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": 40,
+            "height": 40,
+            "label": "Master",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                },
+                {
+                    "key": "font-size",
+                    "value": "20px"
+                }
+            ],
+            "x": 70,
+            "y": 720,
+            "parentId": 32,
+            "id": 34,
+            "index": "rectangle_34",
+            "zIndex": -9,
+            "group": "rectangle_32"
+        },
+        {
+            "type": "rectangle",
+            "width": "500",
+            "height": "160",
+            "label": "",
+            "styleList": [],
+            "x": 750,
+            "y": 410,
+            "parentId": 10,
+            "id": 35,
+            "index": "rectangle_35",
+            "zIndex": "-8",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": 40,
+            "height": 40,
+            "label": "Docker",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "x": 1200,
+            "y": 410,
+            "parentId": 10,
+            "id": 36,
+            "index": "rectangle_36",
+            "zIndex": "-7",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": "560",
+            "height": "340",
+            "label": "",
+            "parentId": 0,
+            "id": 37,
+            "x": 720,
+            "y": 660,
+            "styleList": [],
+            "index": "rectangle_37",
+            "zIndex": "-9"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "40",
+            "label": "kubelet",
+            "parentId": 37,
+            "id": 38,
+            "x": 770,
+            "y": 680,
+            "styleList": [],
+            "index": "rectangle_38",
+            "zIndex": 1,
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "40",
+            "label": "Proxy",
+            "parentId": 37,
+            "id": 39,
+            "x": 940,
+            "y": 680,
+            "styleList": [],
+            "index": "rectangle_39",
+            "zIndex": 1,
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "40",
+            "height": "30",
+            "label": "Pod",
+            "parentId": 37,
+            "id": 40,
+            "x": 770,
+            "y": 850,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_40",
+            "zIndex": "2",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "cAdisor",
+            "parentId": 37,
+            "id": 41,
+            "x": 790,
+            "y": 880,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_41",
+            "zIndex": "2",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "90",
+            "label": "",
+            "styleList": [],
+            "parentId": 37,
+            "id": 42,
+            "x": 770,
+            "y": 850,
+            "index": "rectangle_42",
+            "zIndex": 1,
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "90",
+            "label": "",
+            "styleList": [],
+            "parentId": 37,
+            "id": 43,
+            "x": 940,
+            "y": 850,
+            "index": "rectangle_43",
+            "zIndex": 1,
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "40",
+            "height": "30",
+            "label": "Pod",
+            "parentId": 37,
+            "id": 44,
+            "x": 940,
+            "y": 850,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_44",
+            "zIndex": "2",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "container",
+            "parentId": 37,
+            "id": 45,
+            "x": 960,
+            "y": 880,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_45",
+            "zIndex": "2",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "110",
+            "height": "90",
+            "label": "",
+            "styleList": [],
+            "parentId": 37,
+            "id": 46,
+            "x": 1120,
+            "y": 850,
+            "index": "rectangle_46",
+            "zIndex": 1,
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "40",
+            "height": "30",
+            "label": "Pod",
+            "parentId": 37,
+            "id": 47,
+            "x": 1120,
+            "y": 850,
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "index": "rectangle_47",
+            "zIndex": "2",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "container",
+            "parentId": 37,
+            "id": 48,
+            "x": 1140,
+            "y": 880,
+            "styleList": [
+                {
+                    "key": "background",
+                    "value": "#fff"
+                }
+            ],
+            "index": "rectangle_48",
+            "zIndex": "2",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "",
+            "parentId": 37,
+            "id": 49,
+            "x": 1150,
+            "y": 890,
+            "styleList": [],
+            "index": "rectangle_49",
+            "zIndex": "1",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "",
+            "parentId": 37,
+            "id": 50,
+            "x": 970,
+            "y": 890,
+            "styleList": [],
+            "index": "rectangle_50",
+            "zIndex": "1",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "60",
+            "height": "30",
+            "label": "",
+            "parentId": 37,
+            "id": 51,
+            "x": 800,
+            "y": 890,
+            "styleList": [],
+            "index": "rectangle_51",
+            "zIndex": "1",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": "500",
+            "height": "160",
+            "label": "",
+            "styleList": [],
+            "x": 750,
+            "y": 810,
+            "parentId": 37,
+            "id": 52,
+            "index": "rectangle_52",
+            "zIndex": "-8",
+            "group": "rectangle_37"
+        },
+        {
+            "type": "rectangle",
+            "width": 40,
+            "height": 40,
+            "label": "Docker",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                }
+            ],
+            "x": 1200,
+            "y": 810,
+            "parentId": 37,
+            "id": 53,
+            "index": "rectangle_53",
+            "zIndex": "-7",
+            "group": "rectangle_37"
+        },
+        {},
+        {
+            "type": "rectangle",
+            "width": 40,
+            "height": 40,
+            "label": "Node",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                },
+                {
+                    "key": "font-size",
+                    "value": "18px"
+                }
+            ],
+            "zIndex": "-8",
+            "x": 1230,
+            "y": 260,
+            "parentId": 10,
+            "id": 55,
+            "index": "rectangle_55",
+            "group": "rectangle_10"
+        },
+        {
+            "type": "rectangle",
+            "width": 40,
+            "height": 40,
+            "label": "Node",
+            "styleList": [
+                {
+                    "key": "border",
+                    "value": "0"
+                },
+                {
+                    "key": "font-size",
+                    "value": "18px"
+                }
+            ],
+            "zIndex": "-8",
+            "x": 1230,
+            "y": 660,
+            "parentId": 37,
+            "id": 56,
+            "index": "rectangle_56",
+            "group": "rectangle_37"
+        }
+    ],
+    "connect": [
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle1",
+            "sourcePos": "bottom",
+            "targetId": "rectangle2",
+            "targetPos": "top",
+            "arrow": "right",
+            "source": "rectangle1_bottom",
+            "target": "rectangle2_top",
+            "index": "rectangle1_bottom_rectangle2_top",
+            "connector": "StateMachine"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "elliptical8",
+            "sourcePos": "bottom",
+            "targetId": "rectangle9",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "elliptical8_bottom",
+            "target": "rectangle9_top",
+            "index": "elliptical8_bottom_rectangle9_top"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle9",
+            "sourcePos": "bottom",
+            "targetId": "rectangle12",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle9_bottom",
+            "target": "rectangle12_top",
+            "index": "rectangle9_bottom_rectangle12_top",
+            "dash": ""
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle12",
+            "sourcePos": "bottom",
+            "targetId": "rectangle20",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle12_bottom",
+            "target": "rectangle20_top",
+            "index": "rectangle12_bottom_rectangle20_top",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle12",
+            "sourcePos": "bottom",
+            "targetId": "rectangle23",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle12_bottom",
+            "target": "rectangle23_top",
+            "index": "rectangle12_bottom_rectangle23_top",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle11",
+            "sourcePos": "bottom",
+            "targetId": "rectangle19",
+            "targetPos": "top",
+            "arrow": "right",
+            "dash": "5,5",
+            "connector": "Straight",
+            "source": "rectangle11_bottom",
+            "target": "rectangle19_top",
+            "index": "rectangle11_bottom_rectangle19_top"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle11",
+            "sourcePos": "bottom",
+            "targetId": "rectangle20",
+            "targetPos": "topEnd",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle11_bottom",
+            "target": "rectangle20_topEnd",
+            "index": "rectangle11_bottom_rectangle20_topEnd",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle11",
+            "sourcePos": "bottom",
+            "targetId": "rectangle23",
+            "targetPos": "topEnd",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle11_bottom",
+            "target": "rectangle23_topEnd",
+            "index": "rectangle11_bottom_rectangle23_topEnd",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle11",
+            "sourcePos": "leftEnd",
+            "targetId": "rectangle16",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle11_leftEnd",
+            "target": "rectangle16_top",
+            "index": "rectangle11_leftEnd_rectangle16_top",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle6",
+            "sourcePos": "top",
+            "targetId": "rectangle30",
+            "targetPos": "bottom",
+            "arrow": "right",
+            "source": "rectangle6_top",
+            "target": "rectangle30_bottom",
+            "index": "rectangle6_top_rectangle30_bottom",
+            "dash": "5,5",
+            "connector": "Straight"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle4",
+            "sourcePos": "top",
+            "targetId": "rectangle30",
+            "targetPos": "leftEnd",
+            "arrow": "right",
+            "source": "rectangle4_top",
+            "target": "rectangle30_leftEnd",
+            "index": "rectangle4_top_rectangle30_leftEnd",
+            "dash": "5,5",
+            "connector": "Straight"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle4",
+            "sourcePos": "top",
+            "targetId": "rectangle5",
+            "targetPos": "bottom",
+            "arrow": "right",
+            "source": "rectangle4_top",
+            "target": "rectangle5_bottom",
+            "index": "rectangle4_top_rectangle5_bottom",
+            "dash": "5,5",
+            "connector": "Straight"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle5",
+            "sourcePos": "right",
+            "targetId": "rectangle30",
+            "targetPos": "left",
+            "arrow": "right",
+            "source": "rectangle5_right",
+            "target": "rectangle30_left",
+            "index": "rectangle5_right_rectangle30_left",
+            "dash": "5,5",
+            "connector": "Straight"
+        },
+        {
+            "type": "connect",
+            "arrow": "both",
+            "connector": "StateMachine",
+            "styleList": [],
+            "sourceId": "rectangle30",
+            "sourcePos": "bottomEnd",
+            "targetId": "rectangle7",
+            "targetPos": "top",
+            "dash": "5,5",
+            "source": "rectangle30_bottomEnd",
+            "target": "rectangle7_top",
+            "index": "rectangle30_bottomEnd_rectangle7_top"
+        },
+        {
+            "type": "connect",
+            "arrow": "both",
+            "connector": "StateMachine",
+            "styleList": [],
+            "sourceId": "rectangle30",
+            "sourcePos": "right",
+            "targetId": "rectangle11",
+            "targetPos": "left",
+            "dash": "",
+            "source": "rectangle30_right",
+            "target": "rectangle11_left",
+            "index": "rectangle30_right_rectangle11_left"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle39",
+            "sourcePos": "bottom",
+            "targetId": "rectangle43",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle39_bottom",
+            "target": "rectangle43_top",
+            "index": "rectangle39_bottom_rectangle43_top",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle39",
+            "sourcePos": "bottom",
+            "targetId": "rectangle46",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle39_bottom",
+            "target": "rectangle46_top",
+            "index": "rectangle39_bottom_rectangle46_top",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle38",
+            "sourcePos": "bottom",
+            "targetId": "rectangle42",
+            "targetPos": "top",
+            "arrow": "right",
+            "dash": "5,5",
+            "connector": "Straight",
+            "source": "rectangle38_bottom",
+            "target": "rectangle42_top",
+            "index": "rectangle38_bottom_rectangle42_top"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle38",
+            "sourcePos": "bottom",
+            "targetId": "rectangle43",
+            "targetPos": "topEnd",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle38_bottom",
+            "target": "rectangle43_topEnd",
+            "index": "rectangle38_bottom_rectangle43_topEnd",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle38",
+            "sourcePos": "bottom",
+            "targetId": "rectangle46",
+            "targetPos": "topEnd",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle38_bottom",
+            "target": "rectangle46_topEnd",
+            "index": "rectangle38_bottom_rectangle46_topEnd",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "styleList": [],
+            "sourceId": "rectangle38",
+            "sourcePos": "leftEnd",
+            "targetId": "rectangle41",
+            "targetPos": "top",
+            "arrow": "right",
+            "connector": "Straight",
+            "source": "rectangle38_leftEnd",
+            "target": "rectangle41_top",
+            "index": "rectangle38_leftEnd_rectangle41_top",
+            "dash": "5,5"
+        },
+        {
+            "type": "connect",
+            "arrow": "both",
+            "connector": "StateMachine",
+            "styleList": [],
+            "sourceId": "rectangle30",
+            "sourcePos": "right",
+            "targetId": "rectangle38",
+            "targetPos": "left",
+            "dash": "",
+            "source": "rectangle30_right",
+            "target": "rectangle38_left",
+            "index": "rectangle30_right_rectangle38_left"
+        },
+        {
+            "type": "connect",
+            "arrow": "right",
+            "connector": "Straight",
+            "styleList": [],
+            "sourceId": "rectangle2",
+            "sourcePos": "bottom",
+            "targetId": "rectangle30",
+            "targetPos": "top",
+            "dash": "5,5",
+            "source": "rectangle2_bottom",
+            "target": "rectangle30_top",
+            "index": "rectangle2_bottom_rectangle30_top"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-title data-title="思维导图">
         <div class="flex" style="border-bottom: 1px solid #ddd;padding: 0 0 20px;">
             <div style="width: 200px;margin-right: 10px;"><el-input type="text" size="mini" placeholder="json文件" v-model="mindFile"/></div>
             <el-button icon="el-icon-upload2" size="mini" @click="jsMindImport">导入</el-button>
@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            mindFile: "mind.json",
+            mindFile: "jsmind.json",
 
             mind: {
                 meta: {

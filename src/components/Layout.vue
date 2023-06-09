@@ -10,8 +10,9 @@
             </el-menu>
         </div>
 
-        <JsMind v-if="activeIndex == 'jsMind'" />
+        <JsMind v-if="activeIndex == 'JsMind'" />
         <YamlJson v-else-if="activeIndex == 'YamlJson'" />
+        <Jsplumb v-else-if="activeIndex == 'Jsplumb'" />
     </div>
 </template>
 
@@ -22,21 +23,32 @@ export default {
         List             :()=> import("./List"),         
         YamlJson         :()=> import("./Tools/YamlJson"),         
         JsMind           :()=> import("./Tools/JsMind"),         
+        Jsplumb          :()=> import("./Tools/Jsplumb"),         
     },
     data() {
         return {
             menuList: [
                 {"label": "常用工具" , child: [
-                    {label: "思维导图" , value: "jsMind"}
+                    {label: "思维导图" , value: "JsMind"},
+                    {label: "流程图" , value: "Jsplumb"},
                 ]},                
                 {"label": "转换工具" , child: [
                     {label: "YamlJson" , value: "YamlJson"}
                 ]},
             ],
-            activeIndex: "jsMind",
+            activeIndex: "",
         }
     },
+    mounted() {
+        this.activeIndex = this.paramGet("tool") || "JsMind"
+    },
     methods: {
+        paramGet: function(name) {
+        　　 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        　　 var r = window.location.search.substr(1).match(reg);
+        　　 if(r != null) return unescape(r[2]);
+        　　 return null;
+        },        
         handleSelect: function(index) {
             console.log("handleSelect:" , index)
 
@@ -47,6 +59,9 @@ export default {
 </script>
 
 <style scoped>
+#layoutContainer {
+    position: relative;z-index: -12;    
+}    
 .menu {
     text-align: left;
     margin-bottom: 20px;
