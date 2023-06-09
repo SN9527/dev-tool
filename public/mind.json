@@ -1,0 +1,26 @@
+{
+    "meta": {
+        "name": "jsMind",
+        "version": "0.1"
+    },
+    "format": "node_tree",
+    "data": {
+        "id": "root",
+        "topic": "jsMind",
+        "expanded": true,
+        "children": [
+            {
+                "id": "easy",
+                "topic": "sds",
+                "expanded": false,
+                "direction": "right"
+            },
+            {
+                "id": "89e0051e72e6ed47",
+                "topic": "New Node",
+                "expanded": true,
+                "direction": "right"
+            }
+        ]
+    }
+}

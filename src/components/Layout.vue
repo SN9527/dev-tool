@@ -10,7 +10,8 @@
             </el-menu>
         </div>
 
-        <YamlJson v-if="activeIndex == 'YamlJson'" />
+        <JsMind v-if="activeIndex == 'jsMind'" />
+        <YamlJson v-else-if="activeIndex == 'YamlJson'" />
     </div>
 </template>
 
@@ -20,15 +21,19 @@ export default {
     components: {
         List             :()=> import("./List"),         
         YamlJson         :()=> import("./Tools/YamlJson"),         
+        JsMind           :()=> import("./Tools/JsMind"),         
     },
     data() {
         return {
             menuList: [
+                {"label": "常用工具" , child: [
+                    {label: "思维导图" , value: "jsMind"}
+                ]},                
                 {"label": "转换工具" , child: [
                     {label: "YamlJson" , value: "YamlJson"}
                 ]},
             ],
-            activeIndex: "YamlJson",
+            activeIndex: "jsMind",
         }
     },
     methods: {
