@@ -72,7 +72,7 @@ export default {
                 layout: {
                     hspace: 100, 
                     vspace: 20, 
-                    pspace: 2000 
+                    pspace: 10 
                 },
                 shortcut: {
                     enable: false 
