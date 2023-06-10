@@ -88,7 +88,7 @@ export default {
 
 
             rightMenuList: [
-                {label: "添加节点" , value: "add" , icon: "el-icon-circle-plus"},
+                {label: "添加子节点" , value: "add" , icon: "el-icon-circle-plus"},
                 {label: "删除节点" , value: "delete" , icon: "el-icon-delete"},
                 {label: "Markdown" , value: "markdown" , icon: "el-icon-s-order"},
             ],
@@ -98,8 +98,6 @@ export default {
         document.oncontextmenu = function() {return false}
         this.jsMind = new jsMind(this.options)        
         this.jsMindImport(false)
-        this.rightMenuEventListen()
-
     },
     methods: {
         rightMenuEventListen: function() {
@@ -114,7 +112,7 @@ export default {
                         this.$refs.rightMenu.show()            
                     })
                 }
-            }, 100);
+            }, 1000);
         },
 
 
@@ -149,13 +147,15 @@ export default {
                 if(res.data) this.mind = res.data
 
                 this.jsMind.show(this.mind)                    
+                this.rightMenuEventListen()                                 
             })
             .catch(err => {
                 console.log("err:", err)
 
                 if(fileMust) return this.$message.error("加载文件失败")
 
-                this.jsMind.show(this.mind)                    
+                this.jsMind.show(this.mind)   
+                this.rightMenuEventListen()                                 
             })            
 
         }, 
@@ -181,6 +181,8 @@ export default {
                 case "add":
                     var nodeid = jsMind.util.uuid.newid();
                     this.jsMind.add_node(node, nodeid, "空白")
+                    this.jsMind.select_node(nodeid)
+                    this.jsMind.begin_edit(nodeid)
                     this.rightMenuEventListen()
                     break;
 
