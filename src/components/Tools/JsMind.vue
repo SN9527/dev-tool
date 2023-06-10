@@ -12,6 +12,12 @@
         <div id="jsmindContainer"></div>
 
         <MarkdownDialog ref="markdownDialog" @save="markdownSave"/>        
+        <RightMenu 
+            ref="rightMenu" 
+            id="rightMenu" 
+            :list="rightMenuList" 
+            @click="rightMenuClick"
+        />        
     </div>
 </template>
 
@@ -21,13 +27,12 @@ import jsMind from "jsmind/js/jsmind.js"
 window.jsMind = jsMind
 require("jsmind/js/jsmind.draggable-node.js")
 
-require("@/assets/jsmind.menu.js")
-
 import { saveAs } from "file-saver";    
 export default {
     name: "JsMind",
     components: {
         MarkdownDialog  :()=> import("../Common/MarkdownDialog"), 
+        RightMenu  :()=> import("../Common/RightMenu"), 
     },
     data() {
         return {
@@ -79,15 +84,43 @@ export default {
                     enable: false 
                 }
             },
-            jsMind: null,           
+            jsMind: null,
+
+
+            rightMenuList: [
+                {label: "添加节点" , value: "add" , icon: "el-icon-circle-plus"},
+                {label: "删除节点" , value: "delete" , icon: "el-icon-delete"},
+                {label: "Markdown" , value: "markdown" , icon: "el-icon-s-order"},
+            ],
         };
     },
     mounted() {
         document.oncontextmenu = function() {return false}
         this.jsMind = new jsMind(this.options)        
         this.jsMindImport(false)
+        this.rightMenuEventListen()
+
     },
     methods: {
+        rightMenuEventListen: function() {
+            setTimeout(() => {
+                var jmnodes = document.getElementsByTagName("jmnode")
+                for (var i = jmnodes.length - 1; i >= 0; i--) {
+                    jmnodes[i].addEventListener("contextmenu" , event => {
+                        event.preventDefault()
+                        document.getElementById("rightMenu").style.left = event.x + 5 + "px"
+                        document.getElementById("rightMenu").style.top = event.y - 5 + "px" 
+
+                        this.$refs.rightMenu.show()            
+                    })
+                }
+            }, 100);
+        },
+
+
+
+
+
         jsMindZoomIn: function() {
             console.log("jsMindZoomIn:")
             this.jsMind.view.zoomIn()
@@ -127,25 +160,39 @@ export default {
 
         }, 
 
-        markdownPreview: function(node) {
-            if(node) {
-                console.log("markdownPreview:" , node)
 
-                if(!this.mind.mdDist) this.mind.mdDist = {}
-
-                this.nodeId = node.id
-
-                this.$refs.markdownDialog.show(this.mind.mdDist[this.nodeId])
-            }
-        },
         markdownSave: function(content) {
             console.log("markdownSave:" , content)
 
-            this.mind.mdDist[this.nodeId] = content
+            if(!this.mind.mdDist) this.mind.mdDist = {}
+
+            let node = this.jsMind.get_selected_node()
+            this.mind.mdDist[node.id] = content
             this.$forceUpdate()
 
             this.$message.success("保存成功")           
-        },                                
+        }, 
+
+        rightMenuClick: function(command) {
+            console.log("rightMenuClick:" , command)
+
+            let node = this.jsMind.get_selected_node()
+            switch(command) {
+                case "add":
+                    var nodeid = jsMind.util.uuid.newid();
+                    this.jsMind.add_node(node, nodeid, "空白")
+                    this.rightMenuEventListen()
+                    break;
+
+                case "delete":
+                    this.jsMind.remove_node(node)
+                    break;                    
+
+                case "markdown":
+                    this.$refs.markdownDialog.show(this.mind.mdDist ? this.mind.mdDist[node.id] : "")
+                    break;                    
+            }
+        },
     }
 }
 </script>
@@ -155,4 +202,7 @@ export default {
     width: 100%;
     height: calc(100vh - 146px);
 }    
+#rightMenu {
+    position: absolute;
+}
 </style>
