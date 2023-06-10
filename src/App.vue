@@ -66,4 +66,7 @@ p {
     font-size: 22px;
     text-align: left;
 }
+.katex-html {
+    display: none;
+}
 </style>

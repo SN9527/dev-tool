@@ -10,31 +10,42 @@ import ElementUI from "element-ui"
 Vue.use(ElementUI)
 
 
-import VMdEditor from "@kangc/v-md-editor";
-import "@kangc/v-md-editor/lib/style/base-editor.css";
-import "@kangc/v-md-editor/lib/theme/style/github.css";
+import VMdEditor from "@kangc/v-md-editor"
+import "@kangc/v-md-editor/lib/style/base-editor.css"
+import "@kangc/v-md-editor/lib/theme/style/github.css"
 
-import createLineNumbertPlugin from "@kangc/v-md-editor/lib/plugins/line-number/index";
+import createLineNumbertPlugin from "@kangc/v-md-editor/lib/plugins/line-number/index"
 VMdEditor.use(createLineNumbertPlugin())
 
-import "@kangc/v-md-editor/lib/plugins/todo-list/todo-list.css";
-import createTodoListPlugin from "@kangc/v-md-editor/lib/plugins/todo-list/index";
+import "@kangc/v-md-editor/lib/plugins/todo-list/todo-list.css"
+import createTodoListPlugin from "@kangc/v-md-editor/lib/plugins/todo-list/index"
 VMdEditor.use(createTodoListPlugin())
 
-import createMermaidPlugin from "@kangc/v-md-editor/lib/plugins/mermaid/npm";
-import "@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css";
+import createMermaidPlugin from "@kangc/v-md-editor/lib/plugins/mermaid/npm"
+import "@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css"
 VMdEditor.use(createMermaidPlugin())
 
-import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css";
-import createCopyCodePlugin from "@kangc/v-md-editor/lib/plugins/copy-code/index";
+import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css"
+import createCopyCodePlugin from "@kangc/v-md-editor/lib/plugins/copy-code/index"
 VMdEditor.use(createCopyCodePlugin())
 
-import githubTheme from "@kangc/v-md-editor/lib/theme/github.js";
-import hljs from "highlight.js";
+import createKatexPlugin from "@kangc/v-md-editor/lib/plugins/katex/npm"
+VMdEditor.use(createKatexPlugin())
+
+import createTipPlugin from "@kangc/v-md-editor/lib/plugins/tip/index"
+import "@kangc/v-md-editor/lib/plugins/tip/tip.css"
+VMdEditor.use(createTipPlugin())
+
+import createEmojiPlugin from "@kangc/v-md-editor/lib/plugins/emoji/index"
+import "@kangc/v-md-editor/lib/plugins/emoji/emoji.css"
+VMdEditor.use(createEmojiPlugin())
+
+import githubTheme from "@kangc/v-md-editor/lib/theme/github.js"
+import hljs from "highlight.js"
 VMdEditor.use(githubTheme, {
   	Hljs: hljs
 })
-Vue.use(VMdEditor);
+Vue.use(VMdEditor)
 
 
 
