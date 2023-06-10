@@ -19,6 +19,7 @@
 import "jsmind/style/jsmind.css"
 import jsMind from "jsmind/js/jsmind.js"
 window.jsMind = jsMind
+require("jsmind/js/jsmind.draggable-node.js")
 
 require("@/assets/jsmind.menu.js")
 

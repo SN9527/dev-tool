@@ -2,10 +2,10 @@
     <div id="layoutContainer">  
         <div class="menu">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                <el-submenu :key="item.label" v-for="item in menuList">
+                <el-submenu :key="item.label" :index="item.label" v-for="item in menuList">
                     <template slot="title">{{item.label}}</template>
 
-                    <el-menu-item :key="child.value" v-for="child in item.child">{{child.label}}</el-menu-item>
+                    <el-menu-item :key="child.value" :index="child.value" v-for="child in item.child">{{child.label}}</el-menu-item>
                 </el-submenu>
             </el-menu>
         </div>
