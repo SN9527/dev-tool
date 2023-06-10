@@ -1,6 +1,17 @@
 <template>
 	<div id="toolContainer">
-		<div class="endPointRow">	
+        <div class="form">                        
+            <div class="flex">
+                <el-input size="small" v-model="sourceFile" />   
+                <div>&emsp;</div>   
+                <el-button plain size="small" @click="jsplumbImport">导入</el-button>                                   
+                <el-button plain size="small" @click="jsplumbExport" type="primary">导出</el-button>           
+            </div>            
+        </div>
+
+        <el-divider>图形</el-divider>
+		
+        <div class="endPointRow">	
             <Rectangle  label="" zIndex="1" :styleList="form.type == 'rectangle' ? selectStyleList : []" :width="endPointSize" :height="endPointSize" @endPointClick="endPointClick($event)"/>	
             <div>&emsp;</div>	
             <Elliptical label="" zIndex="1" :styleList="form.type == 'elliptical' ? selectStyleList : []" :width="endPointSize" :height="endPointSize" @endPointClick="endPointClick($event)"/>        
@@ -173,13 +184,6 @@
             <div class="flex" v-else>
                 <el-button plain size="small" @click="formInsert" type="success">新增</el-button>           
             </div>
-            
-            <template v-if="endPointList && endPointList.length > 0">
-                <el-divider>数据导出</el-divider>
-                <div class="flex">
-                    <el-button plain size="small" @click="jsplumbExport" type="primary">导出</el-button>           
-                </div>
-            </template>
         </div>
 
 
@@ -203,6 +207,8 @@ export default {
     },
     data() {
         return {
+            sourceFile: "jsplumb.json",
+
             endPointSize: 40,
             selectStyleList: [
                 {key: "border-color" , value: "#ffb802"}
@@ -356,7 +362,12 @@ export default {
             console.log("jsplumbExport:")
 
             this.$emit("jsplumbExport")
-        },        
+        },
+        jsplumbImport: function() {
+            console.log("jsplumbImport:")
+
+            this.$emit("jsplumbImport" , this.sourceFile)
+        },                
     }, 
     computed: {
         endPointOptions: function() {

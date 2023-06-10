@@ -1,7 +1,7 @@
 <template>
     <div v-title data-title="思维导图">
         <div class="flex" style="border-bottom: 1px solid #ddd;padding: 0 0 20px;">
-            <div style="width: 200px;margin-right: 10px;"><el-input type="text" size="mini" placeholder="json文件" v-model="mindFile"/></div>
+            <div style="width: 200px;margin-right: 10px;"><el-input type="text" size="mini" v-model="sourceFile"/></div>
             <el-button icon="el-icon-download" size="mini" @click="jsMindImport">导入</el-button>
             <el-button icon="el-icon-upload2" size="mini" @click="jsMindExport">导出</el-button>
 
@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            mindFile: "jsmind.json",
+            sourceFile: "jsmind.json",
 
             mind: {
                 meta: {
@@ -134,12 +134,12 @@ export default {
             mindData.mdDist = this.mind.mdDist
 
             let blob = new Blob([JSON.stringify(mindData , null , 4)], {type: "text/plain;charset=utf-8"})            
-            saveAs(blob, this.mindFile)
+            saveAs(blob, this.sourceFile)
         },  
         jsMindImport: function(fileMust = true) {
             console.log("jsMindImport:")
 
-            this.$axios.get(this.mindFile).then(res => {
+            this.$axios.get(this.sourceFile).then(res => {
                 console.log("res:", res)
 
                 if(fileMust && !res.data) return this.$message.error("加载文件失败")

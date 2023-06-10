@@ -1,28 +1,27 @@
 <template>
     <div id="layoutContainer" v-title data-title="流程图设计">
-        <template v-if="initFinish">
-            <div id="toolContainer">
-                <Tool ref="tool"
-                    :endPointList="dist.endPoint"
-                    @endPointInsert="endPointInsert"
-                    @endPointDelete="endPointDelete"
-                    @endPointUpgrade="endPointUpgrade"
-                    @connectInsert="connectInsert"
-                    @connectDelete="connectDelete"
-                    @connectUpgrade="connectUpgrade"                
-                    @endPointDrag="endPointDrag"
-                    @jsplumbExport="jsplumbExport"                
-                />
-            </div>
-            <div id="panelContainer">
-                <Panel ref="panel"
-                    :umlDist="dist"
-                    @endPointClick="endPointClick"
-                    @endPointDrag="endPointDrag"
-                    @endPointUpgrade="endPointUpgrade"
-                />
-            </div>     
-        </template>
+        <div id="toolContainer">
+            <Tool ref="tool"
+                :endPointList="dist.endPoint"
+                @endPointInsert="endPointInsert"
+                @endPointDelete="endPointDelete"
+                @endPointUpgrade="endPointUpgrade"
+                @connectInsert="connectInsert"
+                @connectDelete="connectDelete"
+                @connectUpgrade="connectUpgrade"                
+                @endPointDrag="endPointDrag"
+                @jsplumbExport="jsplumbExport"                
+                @jsplumbImport="jsplumbImport"                
+            />
+        </div>
+        <div id="panelContainer">
+            <Panel ref="panel" v-if="initFinish"
+                :umlDist="dist"
+                @endPointClick="endPointClick"
+                @endPointDrag="endPointDrag"
+                @endPointUpgrade="endPointUpgrade"
+            />
+        </div>     
     </div>
 </template>
 
@@ -36,6 +35,8 @@ export default {
     },
     data() {
         return {
+            sourceFile: "jsplumb.json",
+
             initFinish: false,
 
             dist: {
@@ -55,7 +56,7 @@ export default {
             console.log("dataInit:")
 
             this.initFinish = false
-            this.$axios.get("jsplumb.json").then(res => {
+            this.$axios.get(this.sourceFile).then(res => {
                 console.log("res:", res)
                 if(res.data) this.dist = res.data
                 this.initFinish = true
@@ -251,8 +252,15 @@ export default {
             console.log("jsplumbExport:")
 
             let blob = new Blob([JSON.stringify(this.dist , null , 4)], {type: "text/plain;charset=utf-8"})            
-            saveAs(blob, "jsplumb.json")
-        } 
+            saveAs(blob, this.sourceFile)
+        },
+
+        jsplumbImport: function(sourceFile) {
+            console.log("jsplumbImport:" , sourceFile)
+
+            this.sourceFile = sourceFile
+            this.dataInit()
+        }          
     }      
 }       
 </script>
