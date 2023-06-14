@@ -10,6 +10,8 @@
                 @connectDelete="connectDelete"
                 @connectUpgrade="connectUpgrade"                
                 @endPointDrag="endPointDrag"
+                @markdownPreview="markdownPreview"                
+                @markdownSave="markdownSave"                
                 @jsplumbExport="jsplumbExport"                
                 @jsplumbImport="jsplumbImport"                
             />
@@ -21,7 +23,9 @@
                 @endPointDrag="endPointDrag"
                 @endPointUpgrade="endPointUpgrade"
             />
-        </div>     
+        </div>  
+
+        <MarkdownDialog ref="markdownDialog" @save="markdownSave"/>           
     </div>
 </template>
 
@@ -32,6 +36,7 @@ export default {
     components: {
         Tool        :()=> import("../Jsplumb/Tool"), 
         Panel       :()=> import("../Jsplumb/Panel"), 
+        MarkdownDialog  :()=> import("../Common/MarkdownDialog"), 
     },
     data() {
         return {
@@ -42,8 +47,9 @@ export default {
             dist: {
                 endPointId: 1 , 
                 endPoint: [] , 
-                connect: []
-            }            
+                connect: [],
+                mdDist: {},
+            },            
         }
     },
     mounted() {
@@ -58,8 +64,10 @@ export default {
             this.initFinish = false
             let url = this.$parent.api ? this.$parent.api + "?sence=jsplumb&sourceFile=" + this.sourceFile : this.sourceFile            
             this.$axios.get(url).then(res => {
-                console.log("res:", res)
-                if(res.data) this.dist = res.data
+                if(res.data) {
+                    if(!res.data.mdDist) res.data.mdDist = {} 
+                    this.dist = res.data
+                }
                 this.initFinish = true
 
                 setTimeout(() => {
@@ -74,6 +82,8 @@ export default {
 
         endPointClick: function(endPoint) {
             console.log("endPointClick:" , endPoint)
+
+            delete endPoint.md
 
             this.$refs.tool && this.$refs.tool.endPointClick(endPoint) 
         },
@@ -133,6 +143,8 @@ export default {
         endPointUpgrade: function(endPoint) {
             console.log("endPointUpgrade:" , endPoint)
 
+            delete endPoint.md
+
             this.endPointDrag(endPoint)
 
             this.$refs.panel.refresh()
@@ -172,6 +184,8 @@ export default {
         endPointDrag: function(endPoint) {
             console.log("endPointDrag:" , endPoint)
 
+            delete endPoint.md            
+
             let index = Number(endPoint.id) - 1
 
             // 修改了父级 自己跟随父级变化
@@ -202,7 +216,32 @@ export default {
                 this.dist.endPoint[index][field] = endPoint[field]
             }) 
         }, 
+        markdownPreview: function() {
+            console.log("markdownPreview:")
 
+            let nodeId = this.$refs.tool.form.id
+            if(this.dist.mdDist[nodeId]) return this.$refs.markdownDialog.show(this.dist.mdDist[this.$refs.tool.form.id])
+
+            if(this.$parent.api) {
+                let sourceFileArr = this.sourceFile.split("/")
+                sourceFileArr[sourceFileArr.length - 1] = `md/${nodeId}.md`
+                this.$axios.get(this.$parent.api + "?sence=jsplumb&sourceFile=" + sourceFileArr.join("/")).then(res => {
+                    this.dist.mdDist[nodeId] = res.data
+                    this.$refs.markdownDialog.show(res.data)                                
+                })
+                .catch(err => {
+                    this.$refs.markdownDialog.show("")
+                })
+            }  
+            else {
+                this.$refs.markdownDialog.show("")
+            }          
+        }, 
+        markdownSave: function(content) {
+            console.log("markdownSave:" , content)
+
+            this.dist.mdDist[this.$refs.tool.form.id] = content
+        }, 
 
         connectInsert: function(connect) {
             console.log("connectInsert:" , connect)
@@ -253,10 +292,16 @@ export default {
             console.log("jsplumbExport:")
 
             if(this.$parent.api) {
+
+                let tempDist = JSON.parse(JSON.stringify(this.dist))
+                delete tempDist.mdDist
                 let param = {
                     sence: "jsplumb",
-                    json: JSON.stringify(this.dist , null , 4),
+                    mdDist: this.dist.mdDist,
+                    json: JSON.stringify(tempDist , null , 4),
+                    sourceFile: this.sourceFile,
                 }
+
                 this.$axios.post(this.$parent.api , param).then(res => {
                     this.$message.success("导出成功")
                 })

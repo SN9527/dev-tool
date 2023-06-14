@@ -137,6 +137,7 @@ export default {
                 let param = {
                     sence: "jsMind",
                     json: JSON.stringify(mindData , null , 4),
+                    sourceFile: this.sourceFile,
                     mdDist: this.mind.mdDist,
                 }
                 this.$axios.post(this.$parent.api , param).then(res => {
@@ -158,8 +159,6 @@ export default {
 
             let url = this.$parent.api ? this.$parent.api + "?sence=jsMind&sourceFile=" + this.sourceFile : this.sourceFile
             this.$axios.get(url).then(res => {
-                console.log("res:", res)
-
                 if(fileMust && !res.data) return this.$message.error("加载文件失败")
 
                 if(res.data) this.mind = res.data
@@ -195,6 +194,7 @@ export default {
             console.log("rightMenuClick:" , command)
 
             let node = this.jsMind.get_selected_node()
+            console.log("node:" , node)
             switch(command) {
                 case "add":
                     var nodeid = jsMind.util.uuid.newid();
@@ -209,20 +209,21 @@ export default {
                     break;                    
 
                 case "markdown":
-                    if(!this.mind.mdDist || !this.mind.mdDist[node.id]) {
-                        if(this.$parent.api) {
-                            let sourceFileArr = this.sourceFile.split("/")
-                            sourceFileArr[sourceFileArr.length - 1] = `md/${node.id}.md`
-                            this.$axios.get(sourceFileArr.join("/")).then(res => {
-                                this.$refs.markdownDialog.show(res.data)                                
-                            })
-                            .catch(err => {
-                                this.$refs.markdownDialog.show("")
-                            })
-                        }
+                    if(this.mind.mdDist && this.mind.mdDist[node.id]) return this.$refs.markdownDialog.show(this.mind.mdDist)        
+
+                    if(this.$parent.api) {
+                        let sourceFileArr = this.sourceFile.split("/")
+                        sourceFileArr[sourceFileArr.length - 1] = `md/${node.id}.md`
+                        this.$axios.get(this.$parent.api + "?sence=jsMind&sourceFile=" + sourceFileArr.join("/")).then(res => {
+                            this.mind.mdDist[node.id] = res.data
+                            this.$refs.markdownDialog.show(res.data)                                
+                        })
+                        .catch(err => {
+                            this.$refs.markdownDialog.show("")
+                        })
                     }
                     else {
-                        this.$refs.markdownDialog.show(this.mind.mdDist)        
+                        this.$refs.markdownDialog.show("")
                     }
                     break;                    
             }

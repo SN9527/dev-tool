@@ -185,9 +185,6 @@
                 <el-button plain size="small" @click="formInsert" type="success">新增</el-button>           
             </div>
         </div>
-
-
-        <MarkdownDialog ref="markdownDialog" @save="markdownSave"/>
     </div>
 </template>
 
@@ -200,7 +197,6 @@ export default {
         Rhomboid        :()=> import("./Rhomboid"), 
         Elliptical      :()=> import("./Elliptical"), 
         Connect         :()=> import("./Connect"), 
-        MarkdownDialog  :()=> import("../Common/MarkdownDialog"), 
     },
     props: {
         endPointList: {},  
@@ -348,16 +344,8 @@ export default {
         markdownPreview: function() {
             console.log("markdownPreview:")
 
-            this.$refs.markdownDialog.show(this.form.md)
-        },
-        markdownSave: function(content) {
-            console.log("markdownSave:" , content)
-
-            this.form.md = content
-
-            this.$emit("endPointDrag" , this.form) 
-            this.$message.success("保存成功")           
-        },        
+            this.$emit("markdownPreview") 
+        },      
         jsplumbExport: function() {
             console.log("jsplumbExport:")
 
