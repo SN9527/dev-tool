@@ -37,10 +37,12 @@ export default {
                 ]},
             ],
             activeIndex: "",
+            api: "",
         }
     },
     mounted() {
-        this.activeIndex = this.paramGet("tool") || "JsMind"
+        this.activeIndex    = this.paramGet("tool") || "JsMind"
+        this.api            = this.paramGet("api") || ""
     },
     methods: {
         paramGet: function(name) {

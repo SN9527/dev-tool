@@ -56,7 +56,8 @@ export default {
             console.log("dataInit:")
 
             this.initFinish = false
-            this.$axios.get(this.sourceFile).then(res => {
+            let url = this.$parent.api ? this.$parent.api + "?sence=jsplumb&sourceFile=" + this.sourceFile : this.sourceFile            
+            this.$axios.get(url).then(res => {
                 console.log("res:", res)
                 if(res.data) this.dist = res.data
                 this.initFinish = true
@@ -251,8 +252,22 @@ export default {
         jsplumbExport: function() {
             console.log("jsplumbExport:")
 
-            let blob = new Blob([JSON.stringify(this.dist , null , 4)], {type: "text/plain;charset=utf-8"})            
-            saveAs(blob, this.sourceFile)
+            if(this.$parent.api) {
+                let param = {
+                    sence: "jsplumb",
+                    json: JSON.stringify(this.dist , null , 4),
+                }
+                this.$axios.post(this.$parent.api , param).then(res => {
+                    this.$message.success("导出成功")
+                })
+                .catch(err => {
+                    this.$message.error("API请求失败")                    
+                })
+            }
+            else {
+                let blob = new Blob([JSON.stringify(this.dist , null , 4)], {type: "text/plain;charset=utf-8"})            
+                saveAs(blob, this.sourceFile)
+            } 
         },
 
         jsplumbImport: function(sourceFile) {
