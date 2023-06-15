@@ -79,6 +79,7 @@ export default {
                     ["Blank", {}] 
                 ]
             },
+            connectDash: [],
         }
     },  
     mounted() {
@@ -178,6 +179,7 @@ export default {
             console.log("initConnect:")
 
             if(this.umlDist.connect) {
+                this.connectDash = []
                 this.umlDist.connect.map(connect => {
                     connect.source = `${connect.sourceId}_${connect.sourcePos}`  
                     connect.target = `${connect.targetId}_${connect.targetPos}`  
@@ -185,6 +187,8 @@ export default {
 
                     this.connectAdd(connect)
                 })
+
+                this.connectDash.length > 0 && this.connectDashExec()
             }
         },
 
@@ -221,9 +225,6 @@ export default {
             }
 
             try {
-                // this.instance.addEndpoint(connect.source, {anchor: "Center"} , { fill: "", endpoint: "Dot",paintStyle: { strokeWidth: 0.5}})
-                // this.instance.addEndpoint(connect.target, {anchor: "Center"} , { fill: "", endpoint: "Dot",paintStyle: { strokeWidth: 0.5}})
-
                 this.instance.connect({
                     source: connect.source,
                     target: connect.target,
@@ -237,15 +238,26 @@ export default {
 
 
                 if(connect.dash) {
-                    setTimeout(() => {
-                        let path = document.getElementsByClassName(connect.index)[0].previousElementSibling.firstChild 
-                        path.setAttribute("stroke-dasharray" , connect.dash)
-                    }, 100)                                                  
+                    this.connectDash.push({
+                        class: connect.index,
+                        dash: connect.dash
+                    })                                                 
                 }
             } catch(err) {
                 console.log("err:" , err)
             }
-        },                       
+        },  
+
+        connectDashExec: function() {
+            console.log("connectDashExec:" , this.connectDash)
+
+            setTimeout(() => {
+                this.connectDash.map(item => {
+                    let path = document.getElementsByClassName(item.class)[0].previousElementSibling.firstChild 
+                    path.setAttribute("stroke-dasharray" , item.dash)
+                })
+            }, 500)             
+        },
     }
 }
 </script>

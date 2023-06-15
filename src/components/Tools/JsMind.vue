@@ -161,6 +161,7 @@ export default {
             this.$axios.get(url).then(res => {
                 if(fileMust && !res.data) return this.$message.error("加载文件失败")
 
+                if(!res.data.mdDist) res.data.mdDist = {}
                 if(res.data) this.mind = res.data
 
                 this.jsMind.show(this.mind)                    
@@ -215,10 +216,11 @@ export default {
                         let sourceFileArr = this.sourceFile.split("/")
                         sourceFileArr[sourceFileArr.length - 1] = `md/${node.id}.md`
                         this.$axios.get(this.$parent.api + "?sence=jsMind&sourceFile=" + sourceFileArr.join("/")).then(res => {
-                            this.mind.mdDist[node.id] = res.data
-                            this.$refs.markdownDialog.show(res.data)                                
+                            this.mind.mdDist[node.id] = res.data.toString()
+                            this.$refs.markdownDialog.show(this.mind.mdDist[node.id])                                
                         })
                         .catch(err => {
+                            console.log("err:" , err)                            
                             this.$refs.markdownDialog.show("")
                         })
                     }

@@ -17,7 +17,7 @@
             />
         </div>
         <div id="panelContainer">
-            <Panel ref="panel" v-if="initFinish"
+            <Panel ref="panel"
                 :umlDist="dist"
                 @endPointClick="endPointClick"
                 @endPointDrag="endPointDrag"
@@ -42,8 +42,6 @@ export default {
         return {
             sourceFile: "jsplumb.json",
 
-            initFinish: false,
-
             dist: {
                 endPointId: 1 , 
                 endPoint: [] , 
@@ -61,21 +59,18 @@ export default {
         dataInit: function() {
             console.log("dataInit:")
 
-            this.initFinish = false
             let url = this.$parent.api ? this.$parent.api + "?sence=jsplumb&sourceFile=" + this.sourceFile : this.sourceFile            
             this.$axios.get(url).then(res => {
                 if(res.data) {
                     if(!res.data.mdDist) res.data.mdDist = {} 
                     this.dist = res.data
                 }
-                this.initFinish = true
 
                 setTimeout(() => {
                     this.$refs.panel && this.$refs.panel.refresh()
                 }, 50)                         
             })
             .catch(err => {
-                this.initFinish = true
                 console.log("err:", err)                 
             })
         },
@@ -226,10 +221,11 @@ export default {
                 let sourceFileArr = this.sourceFile.split("/")
                 sourceFileArr[sourceFileArr.length - 1] = `md/${nodeId}.md`
                 this.$axios.get(this.$parent.api + "?sence=jsplumb&sourceFile=" + sourceFileArr.join("/")).then(res => {
-                    this.dist.mdDist[nodeId] = res.data
-                    this.$refs.markdownDialog.show(res.data)                                
+                    this.dist.mdDist[nodeId] = res.data.toString()
+                    this.$refs.markdownDialog.show(this.dist.mdDist[nodeId])                                
                 })
                 .catch(err => {
+                    console.log("err:" , err)
                     this.$refs.markdownDialog.show("")
                 })
             }  

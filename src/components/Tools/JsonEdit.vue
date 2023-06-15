@@ -1,5 +1,5 @@
 <template>
-    <div v-title data-title="yaml-json互转">
+    <div v-title data-title="json编辑">
         <div style="display: flex;">
             <div style="width: 50%;">
                 <codemirror
@@ -28,13 +28,12 @@
 import { codemirror } from "vue-codemirror"
 import "codemirror/lib/codemirror.css"
 
-import "codemirror/mode/yaml/yaml.js"
 import "codemirror/mode/javascript/javascript.js"
 import "codemirror/theme/ayu-mirage.css"    
 import "codemirror/theme/3024-day.css"    
 
 export default {
-    name: "YamlJson",
+    name: "JsonEdit",
     components: {
         codemirror,
     },
@@ -45,8 +44,8 @@ export default {
             leftOptions: {
                 line: true,
                 theme: "3024-day", // 主题
-                tabSize: 2, // 制表符的宽度
-                indentUnit: 2, // 一个块应该缩进多少个空格
+                tabSize: 4, // 制表符的宽度
+                indentUnit: 4, // 一个块应该缩进多少个空格
                 firstLineNumber: 1, // 从哪个数字开始计算行数。默认值为 1。
                 readOnly: false, // 只读
                 autorefresh: true,
@@ -55,13 +54,13 @@ export default {
                 styleActiveLine: true, // 高亮选中行
                 viewportMargin: Infinity, //处理高度自适应时搭配使用
                 showCursorWhenSelecting: true, // 当选择处于活动状态时是否应绘制游标
-                mode: "yaml",
+                mode: "javascript",
             },
             rightOptions: {
                 line: true,
                 theme: "ayu-mirage", 
                 tabSize: 4, 
-                indentUnit: 2, 
+                indentUnit: 4, 
                 firstLineNumber: 1, 
                 readOnly: false, 
                 autorefresh: true,
@@ -71,7 +70,7 @@ export default {
                 viewportMargin: Infinity, 
                 showCursorWhenSelecting: true, 
                 mode: "javascript",
-            },
+            },            
 
 
             YAML: null,
@@ -79,8 +78,6 @@ export default {
         };
     },
     mounted() {
-        this.YAML = require("yamljs")
-
         let that = this
 
         this.$nextTick().then(() => {
@@ -108,7 +105,7 @@ export default {
             console.log("leftChange:" , code)
 
             try {
-                this.codeRight = JSON.stringify(this.YAML.parse(code) , null , 4) || ""
+                this.codeRight = JSON.stringify(JSON.parse(code) , null , 4) || ""
                 this.ignoreChange = "right"
             }
             catch(err) {
@@ -124,7 +121,7 @@ export default {
             console.log("rightChange:" , code)
 
             try {
-                this.codeLeft = this.YAML.stringify(JSON.parse(code) , null , 2)
+                this.codeLeft = JSON.stringify(JSON.parse(code))
                 this.ignoreChange = "left"
             }
             catch(err) {

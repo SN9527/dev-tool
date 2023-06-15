@@ -13,6 +13,7 @@
         <JsMind v-if="activeIndex == 'JsMind'" />
         <YamlJson v-else-if="activeIndex == 'YamlJson'" />
         <Jsplumb v-else-if="activeIndex == 'Jsplumb'" />
+        <JsonEdit v-else-if="activeIndex == 'JsonEdit'" />
     </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
         YamlJson         :()=> import("./Tools/YamlJson"),         
         JsMind           :()=> import("./Tools/JsMind"),         
         Jsplumb          :()=> import("./Tools/Jsplumb"),         
+        JsonEdit         :()=> import("./Tools/JsonEdit"),         
     },
     data() {
         return {
@@ -33,7 +35,8 @@ export default {
                     {label: "流程图" , value: "Jsplumb"},
                 ]},                
                 {"label": "转换工具" , child: [
-                    {label: "YamlJson" , value: "YamlJson"}
+                    {label: "YamlJson" , value: "YamlJson"},
+                    {label: "Json编辑" , value: "JsonEdit"},
                 ]},
             ],
             activeIndex: "",
