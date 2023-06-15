@@ -80,6 +80,12 @@ export default {
                 ]
             },
             connectDash: [],
+
+
+            clickInfo: {
+                type: "",
+                id: "",                
+            }
         }
     },  
     mounted() {
@@ -145,17 +151,42 @@ export default {
                 }
             }})
 
-            this.instance.bind("click" , (connect , event) => {
-                console.log("connect click:")
-                console.log("connect:" , connect)
-                console.log("event:" , event)
-
-                that.umlDist.connect.map(connectItem => {
-                    if(connectItem.source == connect.sourceId && connectItem.target == connect.targetId) {                        
-                        this.$emit("endPointClick" , connectItem)
-                    }
+            var connectLines = document.getElementsByClassName("connectLine")
+            for (var i = connectLines.length - 1; i >= 0; i--) {
+                connectLines[i].addEventListener("mouseenter" , event => {
+                    event.preventDefault()
+                    let childs = event.target.children
+                    for (var i = 0; i < childs.length; i++) { 
+                        !childs[i].getAttribute("data-stroke") && childs[i].setAttribute("data-stroke" , childs[i].getAttribute("stroke"))
+                        childs[i].setAttribute("stroke" , "#ffb802")
+                    }                    
                 })
-            })
+                connectLines[i].addEventListener("mouseout" , event => {
+                    event.preventDefault()
+
+                    console.log("mouseout" , event.target)
+                    if(event.target.getAttribute("data-select") != 1) {
+                        let svgElement = event.target.farthestViewportElement
+                        let childs = svgElement.children
+                        for (var i = 0; i < childs.length; i++) {                    
+                            childs[i].setAttribute("stroke" , childs[i].getAttribute("data-stroke"))
+                        }                    
+                    }
+                })                
+                connectLines[i].addEventListener("click" , event => {
+                    event.preventDefault()
+                    console.log("click" , event)
+                    event.target.farthestViewportElement.getAttribute("class").split(" ").map(item => {
+                        if(item.indexOf("_") != -1) {
+                            that.umlDist.connect.map(connectItem => {
+                                if(connectItem.index == item) {                        
+                                    that.endPointClick(connectItem)                        
+                                }
+                            })                            
+                        }
+                    })
+                })
+            }            
         }, 
         
         initEndPoint: function() {
@@ -195,6 +226,8 @@ export default {
         endPointClick: function(endPoint) {
             console.log("endPointClick:" , endPoint)
 
+            if(endPoint.id || endPoint.index) this.selectedExec(endPoint)
+
             this.$emit("endPointClick" , endPoint)
         },
         endPointAdd: function(endPoint) {
@@ -214,14 +247,14 @@ export default {
             ]
 
             if(connect.arrow == "left") {
-                overlays.push(["Arrow", { width: 12, length: 12, location: 0 , foldback: 0.1 ,  direction: -1}])
+                overlays.push(["Arrow", { width: 10, length: 10, location: 0 , foldback: 0.1 ,  direction: -1}])
             }
             else if(connect.arrow == "right") {
-                overlays.push(["Arrow", { width: 12, length: 12, location: 1 , foldback: 0.1 ,  direction: 1}])                
+                overlays.push(["Arrow", { width: 10, length: 10, location: 1 , foldback: 0.1 ,  direction: 1}])                
             }
             else if(connect.arrow == "both") {
-                overlays.push(["Arrow", { width: 12, length: 12, location: 0 , foldback: 0.1 ,  direction: -1}])
-                overlays.push(["Arrow", { width: 12, length: 12, location: 1 , foldback: 0.1 ,  direction: 1}])
+                overlays.push(["Arrow", { width: 10, length: 10, location: 0 , foldback: 0.1 ,  direction: -1}])
+                overlays.push(["Arrow", { width: 10, length: 10, location: 1 , foldback: 0.1 ,  direction: 1}])
             }
 
             try {
@@ -232,8 +265,7 @@ export default {
                     connector: [connect.connector || "Straight"], //Bezier Flowchart StateMachine Straight
                     overlays: overlays, 
                     paintStyle: { stroke: connect.labelColor || "#333", strokeWidth: 2},
-                    hoverPaintStyle : { stroke: "#ffb802", strokeWidth: 2},
-                    cssClass : "connectLine",
+                    cssClass : `connectLine ${connect.index}`,
                 })
 
 
@@ -258,6 +290,46 @@ export default {
                 })
             }, 500)             
         },
+
+
+        selectedExec: function(endPoint) {
+            console.log("selectedExec:" , endPoint) 
+
+            if(this.clickInfo.type == "connect") {
+                let childs = document.getElementsByClassName(this.clickInfo.id)[0].children
+
+                for (var i = 0; i < childs.length; i++) {  
+                    console.log("unselectedExec child" , childs[i])
+                    if(childs[i].getAttribute("data-select") == 1) {
+                        childs[i].setAttribute("stroke" , childs[i].getAttribute("data-stroke"))
+                        childs[i].setAttribute("data-select" , "")
+                    }                  
+                }
+            }
+            else if(this.clickInfo.id) {
+                let node = document.getElementById(this.clickInfo.id).firstChild
+                node.setAttribute("class" , node.getAttribute("class").replace("endpointSelected" , ""))
+            }            
+
+            this.clickInfo.id = endPoint.index || `${endPoint.type}_${endPoint.id}`
+            this.clickInfo.type = endPoint.type            
+
+            if(this.clickInfo.type == "connect") {
+                let childs = document.getElementsByClassName(this.clickInfo.id)[0].children
+
+                for (var i = 0; i < childs.length; i++) {                    
+                    console.log("selectedExec child" , childs[i])
+                    !childs[i].getAttribute("data-stroke") && childs[i].setAttribute("data-stroke" , childs[i].getAttribute("stroke"))
+
+                    childs[i].setAttribute("data-select" , 1)
+                    childs[i].setAttribute("stroke" , "#ffb802")
+                }
+            }
+            else if(this.clickInfo.id) {
+                let node = document.getElementById(this.clickInfo.id).firstChild
+                node.setAttribute("class" , node.getAttribute("class") + " endpointSelected")
+            }
+        },        
     }
 }
 </script>

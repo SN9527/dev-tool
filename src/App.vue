@@ -69,4 +69,8 @@ p {
 .katex-html {
     display: none;
 }
+.endpointSelected {
+    border-color: #ffb802 !important;
+    color: #ffb802 !important;
+}
 </style>

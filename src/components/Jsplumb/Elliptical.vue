@@ -55,7 +55,7 @@ export default {
         posCreate: function() {
             let width   = Number(this.width) / 2
             let height  = Number(this.height) / 2
-            let len     = Math.sqrt(2)
+            let len     = (Number(this.width) / Number(this.height)) *Math.sqrt(2)
 
             this.posDist.top        = `top:-4px;right:${width - 4}px;`
             this.posDist.right      = `top:${height - 4}px;right:-4px;`
